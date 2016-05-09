@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditArriendoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: white" infoStyle="color: orange" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditArriendoLabel_numarriendo}" for="numarriendo" />
+                    <h:inputText id="numarriendo" value="#{arriendoController.selected.numarriendo}" title="#{bundle.EditArriendoTitle_numarriendo}" required="true" requiredMessage="#{bundle.EditArriendoRequiredMessage_numarriendo}"/>
+                    <h:outputLabel value="#{bundle.EditArriendoLabel_renta}" for="renta" />
+                    <h:inputText id="renta" value="#{arriendoController.selected.renta}" title="#{bundle.EditArriendoTitle_renta}" />
+                    <h:outputLabel value="#{bundle.EditArriendoLabel_formapago}" for="formapago" />
+                    <h:inputText id="formapago" value="#{arriendoController.selected.formapago}" title="#{bundle.EditArriendoTitle_formapago}" />
+                    <h:outputLabel value="#{bundle.EditArriendoLabel_temporada}" for="temporada" />
+                    <h:inputText id="temporada" value="#{arriendoController.selected.temporada}" title="#{bundle.EditArriendoTitle_temporada}" />
+                    <h:outputLabel value="#{bundle.EditArriendoLabel_deposito}" for="deposito" />
+                    <h:inputText id="deposito" value="#{arriendoController.selected.deposito}" title="#{bundle.EditArriendoTitle_deposito}" />
+                    <h:outputLabel value="#{bundle.EditArriendoLabel_pagado}" for="pagado" />
+                    <h:inputText id="pagado" value="#{arriendoController.selected.pagado}" title="#{bundle.EditArriendoTitle_pagado}" />
+                    <h:outputLabel value="#{bundle.EditArriendoLabel_iniciorenta}" for="iniciorenta" />
+                    <h:inputText id="iniciorenta" value="#{arriendoController.selected.iniciorenta}" title="#{bundle.EditArriendoTitle_iniciorenta}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditArriendoLabel_finrenta}" for="finrenta" />
+                    <h:inputText id="finrenta" value="#{arriendoController.selected.finrenta}" title="#{bundle.EditArriendoTitle_finrenta}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditArriendoLabel_numcliente}" for="numcliente" />
+                    <h:selectOneMenu id="numcliente" value="#{arriendoController.selected.numcliente}" title="#{bundle.EditArriendoTitle_numcliente}" >
+                        <f:selectItems value="#{clienteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditArriendoLabel_numpropiedad}" for="numpropiedad" />
+                    <h:selectOneMenu id="numpropiedad" value="#{arriendoController.selected.numpropiedad}" title="#{bundle.EditArriendoTitle_numpropiedad}" >
+                        <f:selectItems value="#{propiedadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{arriendoController.update}" value="#{bundle.EditArriendoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditArriendoViewLink}"/>
+                <br />
+                <h:commandLink action="#{arriendoController.prepareList}" value="#{bundle.EditArriendoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditArriendoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditInspeccionesTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditInspeccionesLabel_idinspeccion}" for="idinspeccion" />
+                    <h:inputText id="idinspeccion" value="#{inspeccionesController.selected.idinspeccion}" title="#{bundle.EditInspeccionesTitle_idinspeccion}" required="true" requiredMessage="#{bundle.EditInspeccionesRequiredMessage_idinspeccion}"/>
+                    <h:outputLabel value="#{bundle.EditInspeccionesLabel_numpropietario}" for="numpropietario" />
+                    <h:inputText id="numpropietario" value="#{inspeccionesController.selected.numpropietario}" title="#{bundle.EditInspeccionesTitle_numpropietario}" />
+                    <h:outputLabel value="#{bundle.EditInspeccionesLabel_tipoprop}" for="tipoprop" />
+                    <h:inputText id="tipoprop" value="#{inspeccionesController.selected.tipoprop}" title="#{bundle.EditInspeccionesTitle_tipoprop}" />
+                    <h:outputLabel value="#{bundle.EditInspeccionesLabel_codigopostal}" for="codigopostal" />
+                    <h:inputText id="codigopostal" value="#{inspeccionesController.selected.codigopostal}" title="#{bundle.EditInspeccionesTitle_codigopostal}" />
+                    <h:outputLabel value="#{bundle.EditInspeccionesLabel_calle}" for="calle" />
+                    <h:inputText id="calle" value="#{inspeccionesController.selected.calle}" title="#{bundle.EditInspeccionesTitle_calle}" />
+                    <h:outputLabel value="#{bundle.EditInspeccionesLabel_comuna}" for="comuna" />
+                    <h:inputText id="comuna" value="#{inspeccionesController.selected.comuna}" title="#{bundle.EditInspeccionesTitle_comuna}" />
+                    <h:outputLabel value="#{bundle.EditInspeccionesLabel_ciudad}" for="ciudad" />
+                    <h:inputText id="ciudad" value="#{inspeccionesController.selected.ciudad}" title="#{bundle.EditInspeccionesTitle_ciudad}" />
+                    <h:outputLabel value="#{bundle.EditInspeccionesLabel_fechainspeccion}" for="fechainspeccion" />
+                    <h:inputText id="fechainspeccion" value="#{inspeccionesController.selected.fechainspeccion}" title="#{bundle.EditInspeccionesTitle_fechainspeccion}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditInspeccionesLabel_numpropiedad}" for="numpropiedad" />
+                    <h:selectOneMenu id="numpropiedad" value="#{inspeccionesController.selected.numpropiedad}" title="#{bundle.EditInspeccionesTitle_numpropiedad}" >
+                        <f:selectItems value="#{propiedadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{inspeccionesController.update}" value="#{bundle.EditInspeccionesSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditInspeccionesViewLink}"/>
+                <br />
+                <h:commandLink action="#{inspeccionesController.prepareList}" value="#{bundle.EditInspeccionesShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditInspeccionesIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
